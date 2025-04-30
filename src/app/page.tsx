@@ -43,7 +43,8 @@ export default function Home() {
     let newSize: number;
     
     do {
-      newX = Math.random() * window.innerWidth;
+      // 画面の中央下あたりから生成（画面幅の中央 ± 100pxの範囲）
+      newX = window.innerWidth / 2 + (Math.random() * 200 - 100);
       newSize = Math.random() * 100 + 150;
       attempts++;
     } while (isOverlapping(newX, newSize) && attempts < 10);
