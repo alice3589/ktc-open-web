@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Bubble } from './components/Bubble';
 import { Modal } from './components/Modal';
@@ -33,7 +33,7 @@ export default function Home() {
     return randomType;
   };
 
-  const createBubble = () => {
+  const createBubble = useCallback(() => {
     let attempts = 0;
     let newX: number;
     let newSize: number;
@@ -58,7 +58,7 @@ export default function Home() {
       return true;
     }
     return false;
-  };
+  }, [isOverlapping, getRandomContentType]);
 
   useEffect(() => {
     createBubble();
@@ -71,7 +71,7 @@ export default function Home() {
     }, 500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [createBubble]);
 
   const handleBubbleClick = (type: ContentType) => {
     setSelectedContent(type);
@@ -88,7 +88,9 @@ export default function Home() {
       {bubbles.map((bubble) => (
         <Bubble
           key={bubble.id}
-          {...bubble}
+          x={bubble.x}
+          size={bubble.size}
+          type={bubble.type}
           onClick={handleBubbleClick}
         />
       ))}
