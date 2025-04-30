@@ -33,69 +33,67 @@ export default function Header() {
 
           {/* モバイルメニューボタン */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 relative z-50"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            <div className="w-6 h-6 flex flex-col justify-between">
+              <span
+                className={`block w-full h-0.5 bg-gray-700 transform transition-all duration-300 ${
+                  isMenuOpen ? "rotate-45 translate-y-2.5" : ""
+                }`}
+              ></span>
+              <span
+                className={`block w-full h-0.5 bg-gray-700 transition-all duration-300 ${
+                  isMenuOpen ? "opacity-0" : ""
+                }`}
+              ></span>
+              <span
+                className={`block w-full h-0.5 bg-gray-700 transform transition-all duration-300 ${
+                  isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""
+                }`}
+              ></span>
+            </div>
           </button>
         </div>
 
         {/* モバイルメニュー */}
-        {isMenuOpen && (
-          <nav className="md:hidden py-4">
-            <div className="flex flex-col space-y-4">
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-blue-600 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                ホーム
-              </Link>
-              <Link
-                href="/about"
-                className="text-gray-700 hover:text-blue-600 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                校長挨拶
-              </Link>
-              <Link
-                href="/schedule"
-                className="text-gray-700 hover:text-blue-600 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                本日のスケジュール
-              </Link>
-              <Link
-                href="/notice"
-                className="text-gray-700 hover:text-blue-600 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                連絡事項
-              </Link>
-            </div>
+        <div
+          className={`md:hidden fixed inset-0 bg-white/95 backdrop-blur-sm transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
+          style={{ top: "4rem" }}
+        >
+          <nav className="h-full flex flex-col justify-center items-center space-y-8">
+            <Link
+              href="/"
+              className="text-2xl text-gray-700 hover:text-blue-600 transition transform hover:scale-110"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              ホーム
+            </Link>
+            <Link
+              href="/about"
+              className="text-2xl text-gray-700 hover:text-blue-600 transition transform hover:scale-110"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              校長挨拶
+            </Link>
+            <Link
+              href="/schedule"
+              className="text-2xl text-gray-700 hover:text-blue-600 transition transform hover:scale-110"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              本日のスケジュール
+            </Link>
+            <Link
+              href="/notice"
+              className="text-2xl text-gray-700 hover:text-blue-600 transition transform hover:scale-110"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              連絡事項
+            </Link>
           </nav>
-        )}
+        </div>
       </div>
     </header>
   );
