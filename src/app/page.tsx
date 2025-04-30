@@ -12,6 +12,7 @@ export default function Home() {
   const [selectedContent, setSelectedContent] = useState<ContentType | null>(null);
   const bubblesRef = useRef(bubbles);
   const lastTypeRef = useRef<ContentType | null>(null);
+  const isGeneratingRef = useRef(false);
 
   useEffect(() => {
     bubblesRef.current = bubbles;
@@ -34,6 +35,9 @@ export default function Home() {
   };
 
   const createBubble = useCallback(() => {
+    if (isGeneratingRef.current) return false;
+
+    isGeneratingRef.current = true;
     let attempts = 0;
     let newX: number;
     let newSize: number;
@@ -61,14 +65,16 @@ export default function Home() {
   }, [isOverlapping, getRandomContentType]);
 
   useEffect(() => {
+    // 初期状態で1つのシャボン玉を生成
     createBubble();
 
     const interval = setInterval(() => {
-      if (bubblesRef.current.length === 0) {
-        createBubble();
-      }
       createBubble();
-    }, 500);
+      // 生成フラグをリセット
+      setTimeout(() => {
+        isGeneratingRef.current = false;
+      }, 1000);
+    }, 1000); // 1秒ごとに生成を試みる
 
     return () => clearInterval(interval);
   }, [createBubble]);
