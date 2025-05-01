@@ -8,7 +8,7 @@ import { CustomNavbar } from './components/CustomNavbar';
 import { ContentType } from './components/types';
 
 export default function Home() {
-  const [bubbles, setBubbles] = useState<{ id: number; x: number; size: number; type: ContentType }[]>([]);
+  const [bubbles, setBubbles] = useState<{ id: number; x: number; y: number; size: number; type: ContentType }[]>([]);
   const [selectedContent, setSelectedContent] = useState<ContentType | null>(null);
   const bubblesRef = useRef(bubbles);
   const lastTypeRef = useRef<ContentType | null>(null);
@@ -34,13 +34,15 @@ export default function Home() {
     }
 
     lastGenerationTimeRef.current = currentTime;
-    // 画面の下部から生成（画面幅全体からランダムに位置を決定）
+    // 画面のどこからでも生成（画面全体からランダムに位置を決定）
     const newX = Math.random() * window.innerWidth;
+    const newY = Math.random() * window.innerHeight;
     const newSize = Math.random() * 100 + 150;
 
     const newBubble = {
       id: currentTime,
       x: newX,
+      y: newY,
       size: newSize,
       type: getRandomContentType(),
     };
@@ -54,7 +56,7 @@ export default function Home() {
     // 初期状態で1つのシャボン玉を生成
     createBubble();
 
-    const interval = setInterval(createBubble, 1000); // 3秒ごとに生成を試みる
+    const interval = setInterval(createBubble, 3000); // 3秒ごとに生成を試みる
 
     return () => clearInterval(interval);
   }, [createBubble]);
@@ -75,6 +77,7 @@ export default function Home() {
         <Bubble
           key={bubble.id}
           x={bubble.x}
+          y={bubble.y}
           size={bubble.size}
           type={bubble.type}
           onClick={handleBubbleClick}
