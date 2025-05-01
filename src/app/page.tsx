@@ -36,11 +36,14 @@ export default function Home() {
     lastGenerationTimeRef.current = currentTime;
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-    const centerX = screenWidth / 2;
-    const range = Math.min(screenWidth / 4, 200); // モバイルでの生成範囲を制限
-    const newX = centerX + (Math.random() * range * 2 - range);
-    const newY = screenHeight; // 画面の下部から生成
-    const newSize = Math.min(Math.random() * 100 + 150, screenWidth * 0.3); // モバイルでのサイズを制限
+    
+    // 画面の左端から右端まで均等に生成するように修正
+    const minX = screenWidth * 0.1; // 画面左端から10%の位置
+    const maxX = screenWidth * 0.9; // 画面右端から10%の位置
+    const newX = minX + Math.random() * (maxX - minX);
+    
+    const newY = screenHeight;
+    const newSize = Math.min(Math.random() * 100 + 150, screenWidth * 0.3);
 
     const newBubble = {
       id: currentTime,
