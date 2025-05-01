@@ -43,7 +43,8 @@ export default function Home() {
     const newX = minX + Math.random() * (maxX - minX);
     
     const newY = screenHeight;
-    const newSize = Math.min(Math.random() * 100 + 150, screenWidth * 0.3);
+    // シャボン玉のサイズを大きくする
+    const newSize = Math.min(Math.random() * 150 + 200, screenWidth * 0.4); // 基本サイズを200-350pxに、最大サイズを画面幅の40%に
 
     const newBubble = {
       id: currentTime,

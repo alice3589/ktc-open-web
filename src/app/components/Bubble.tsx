@@ -16,10 +16,10 @@ export const Bubble = ({ x, y, size, type, onClick }: BubbleProps) => (
     style={{
       left: `${x}px`,
       top: `${y}px`,
-      width: `min(${size}px, 80vw)`,
-      height: `min(${size}px, 80vw)`,
-      maxWidth: '300px',
-      maxHeight: '300px',
+      width: `min(${size}px, 90vw)`,
+      height: `min(${size}px, 90vw)`,
+      maxWidth: '400px',
+      maxHeight: '400px',
     }}
   >
     <div className="relative w-1/2 h-1/2">
