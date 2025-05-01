@@ -12,16 +12,16 @@ export const Modal = ({ selectedContent, onClose }: ModalProps) => {
     switch (selectedContent) {
       case "greeting":
         return (
-          <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">学校長挨拶</h2>
-            <p>ここに学校長の挨拶文が入ります。</p>
+          <div className="p-3 sm:p-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">学校長挨拶</h2>
+            <p className="text-sm sm:text-base">ここに学校長の挨拶文が入ります。</p>
           </div>
         );
       case "schedule":
         return (
-          <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">スケジュール</h2>
-            <ul className="list-disc pl-4">
+          <div className="p-3 sm:p-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">スケジュール</h2>
+            <ul className="list-disc pl-4 text-sm sm:text-base">
               <li>4月1日：入学式</li>
               <li>4月8日：始業式</li>
               <li>4月15日：新入生歓迎会</li>
@@ -30,16 +30,16 @@ export const Modal = ({ selectedContent, onClose }: ModalProps) => {
         );
       case "map":
         return (
-          <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">キャンバスマップ</h2>
-            <p>ここにキャンパスマップが表示されます。</p>
+          <div className="p-3 sm:p-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">キャンバスマップ</h2>
+            <p className="text-sm sm:text-base">ここにキャンパスマップが表示されます。</p>
           </div>
         );
       case "notice":
         return (
-          <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">連絡事項</h2>
-            <ul className="list-disc pl-4">
+          <div className="p-3 sm:p-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">連絡事項</h2>
+            <ul className="list-disc pl-4 text-sm sm:text-base">
               <li>新入生オリエンテーションについて</li>
               <li>授業開始について</li>
               <li>学生証の受け取りについて</li>
@@ -54,10 +54,10 @@ export const Modal = ({ selectedContent, onClose }: ModalProps) => {
   if (!selectedContent) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg w-11/12 max-w-2xl">
-        <div className="flex justify-between items-center p-4 border-b">
-          <h2 className="text-xl font-bold">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg w-full max-w-2xl">
+        <div className="flex justify-between items-center p-3 sm:p-4 border-b">
+          <h2 className="text-lg sm:text-xl font-bold">
             {selectedContent === "greeting" && "学校長挨拶"}
             {selectedContent === "schedule" && "スケジュール"}
             {selectedContent === "map" && "キャンバスマップ"}
@@ -65,7 +65,7 @@ export const Modal = ({ selectedContent, onClose }: ModalProps) => {
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-gray-500 hover:text-gray-700 text-xl"
           >
             ✕
           </button>
