@@ -34,8 +34,11 @@ export default function Home() {
     }
 
     lastGenerationTimeRef.current = currentTime;
-    // 画面の下部から生成（画面幅全体からランダムに位置を決定）
-    const newX = Math.random() * window.innerWidth;
+    // 画面の下部から生成（画面幅の中央 ± 画面幅の1/4の範囲）
+    const screenWidth = window.innerWidth;
+    const centerX = screenWidth / 2;
+    const range = screenWidth / 4;
+    const newX = centerX + (Math.random() * range * 2 - range);
     const newY = window.innerHeight; // 画面の下部から生成
     const newSize = Math.random() * 100 + 150;
 
