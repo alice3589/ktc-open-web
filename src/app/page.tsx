@@ -12,19 +12,12 @@ export default function Home() {
   const [selectedContent, setSelectedContent] = useState<ContentType | null>(null);
   const bubblesRef = useRef(bubbles);
   const lastTypeRef = useRef<ContentType | null>(null);
-  const isGeneratingRef = useRef(false);
+  const lastGenerationTimeRef = useRef<number>(Date.now());
+  const minGenerationInterval = 1000; // 最小生成間隔（ミリ秒）
 
   useEffect(() => {
     bubblesRef.current = bubbles;
   }, [bubbles]);
-
-  const isOverlapping = (x: number, size: number) => {
-    return bubblesRef.current.some(bubble => {
-      const distance = Math.abs(x - bubble.x);
-      const minDistance = (size + bubble.size) / 2.5;
-      return distance < minDistance;
-    });
-  };
 
   const getRandomContentType = (): ContentType => {
     const types: ContentType[] = ["greeting", "schedule", "map", "notice"];
@@ -35,47 +28,33 @@ export default function Home() {
   };
 
   const createBubble = useCallback(() => {
-    if (isGeneratingRef.current) return false;
-
-    isGeneratingRef.current = true;
-    let attempts = 0;
-    let newX: number;
-    let newSize: number;
-    
-    do {
-      // 画面の中央下あたりから生成（画面幅の中央 ± 100pxの範囲）
-      newX = window.innerWidth / 2 + (Math.random() * 200 - 100);
-      newSize = Math.random() * 100 + 150;
-      attempts++;
-    } while (isOverlapping(newX, newSize) && attempts < 10);
-
-    if (attempts < 10) {
-      const newBubble = {
-        id: Date.now(),
-        x: newX,
-        size: newSize,
-        type: getRandomContentType(),
-      };
-      setBubbles((prev) => [...prev, newBubble]);
-      setTimeout(() => {
-        setBubbles((prev) => prev.filter((bubble) => bubble.id !== newBubble.id));
-      }, 20000);
-      return true;
+    const currentTime = Date.now();
+    if (currentTime - lastGenerationTimeRef.current < minGenerationInterval) {
+      return; // 最小生成間隔を下回る場合は生成しない
     }
-    return false;
-  }, [isOverlapping, getRandomContentType]);
+
+    lastGenerationTimeRef.current = currentTime;
+    // 画面の下部から生成（画面幅全体からランダムに位置を決定）
+    const newX = Math.random() * window.innerWidth;
+    const newSize = Math.random() * 100 + 150;
+
+    const newBubble = {
+      id: currentTime,
+      x: newX,
+      size: newSize,
+      type: getRandomContentType(),
+    };
+    setBubbles((prev) => [...prev, newBubble]);
+    setTimeout(() => {
+      setBubbles((prev) => prev.filter((bubble) => bubble.id !== newBubble.id));
+    }, 20000);
+  }, [getRandomContentType]);
 
   useEffect(() => {
     // 初期状態で1つのシャボン玉を生成
     createBubble();
 
-    const interval = setInterval(() => {
-      createBubble();
-      // 生成フラグをリセット
-      setTimeout(() => {
-        isGeneratingRef.current = false;
-      }, 1000);
-    }, 1000); // 1秒ごとに生成を試みる
+    const interval = setInterval(createBubble, 1000); // 3秒ごとに生成を試みる
 
     return () => clearInterval(interval);
   }, [createBubble]);
