@@ -30,17 +30,17 @@ export default function Home() {
   const createBubble = useCallback(() => {
     const currentTime = Date.now();
     if (currentTime - lastGenerationTimeRef.current < minGenerationInterval) {
-      return; // 最小生成間隔を下回る場合は生成しない
+      return;
     }
 
     lastGenerationTimeRef.current = currentTime;
-    // 画面の下部から生成（画面幅の中央 ± 画面幅の1/4の範囲）
     const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
     const centerX = screenWidth / 2;
-    const range = screenWidth / 4;
+    const range = Math.min(screenWidth / 4, 200); // モバイルでの生成範囲を制限
     const newX = centerX + (Math.random() * range * 2 - range);
-    const newY = window.innerHeight; // 画面の下部から生成
-    const newSize = Math.random() * 100 + 150;
+    const newY = screenHeight; // 画面の下部から生成
+    const newSize = Math.min(Math.random() * 100 + 150, screenWidth * 0.3); // モバイルでのサイズを制限
 
     const newBubble = {
       id: currentTime,
@@ -103,6 +103,12 @@ export default function Home() {
         }
         .animate-bubble {
           animation: bubble 15s ease-out forwards;
+          will-change: transform;
+        }
+        @media (max-width: 768px) {
+          .animate-bubble {
+            animation: bubble 12s ease-out forwards;
+          }
         }
       `}</style>
     </div>
