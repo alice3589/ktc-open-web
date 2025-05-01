@@ -38,7 +38,7 @@ export default function Home() {
     const screenHeight = window.innerHeight;
     
     // 画面の左端から右端まで均等に生成するように修正
-    const minX = screenWidth * 0.1; // 画面左端から10%の位置
+    const minX = screenWidth * 0.01; // 画面左端から10%の位置
     const maxX = screenWidth * 0.9; // 画面右端から10%の位置
     const newX = minX + Math.random() * (maxX - minX);
     
