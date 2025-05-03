@@ -77,12 +77,22 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-blue-100 relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-blue-100 opacity-70"
+        style={{
+          backgroundImage: 'url(background.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
       <CustomNavbar onSelect={handleBubbleClick} />
 
       {bubbles.map((bubble) => (
         <Bubble
           key={bubble.id}
+          id={bubble.id}
           x={bubble.x}
           y={bubble.y}
           size={bubble.size}
@@ -106,12 +116,12 @@ export default function Home() {
           }
         }
         .animate-bubble {
-          animation: bubble 15s ease-out forwards;
+          animation: bubble 20s ease-out forwards;
           will-change: transform;
         }
         @media (max-width: 768px) {
           .animate-bubble {
-            animation: bubble 12s ease-out forwards;
+            animation: bubble 16s ease-out forwards;
           }
         }
       `}</style>
