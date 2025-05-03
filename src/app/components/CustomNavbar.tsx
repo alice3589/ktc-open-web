@@ -6,7 +6,7 @@ interface CustomNavbarProps {
 }
 
 export const CustomNavbar = ({ onSelect }: CustomNavbarProps) => (
-  <Navbar bg="light" expand="lg" className="mb-4">
+  <Navbar bg="light" expand="lg" className="mb-4 position-fixed w-100" style={{ zIndex: 1000 }}>
     <Container>
       <Navbar.Brand href="#home">学校ポータル</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

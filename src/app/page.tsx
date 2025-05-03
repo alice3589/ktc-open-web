@@ -42,7 +42,10 @@ export default function Home() {
     const maxX = screenWidth * 0.9; // 画面右端から10%の位置
     const newX = minX + Math.random() * (maxX - minX);
     
-    const newY = screenHeight;
+    // ナビゲーションバーの高さ（約64px）を考慮して生成位置を調整
+    const navbarHeight = 64;
+    const newY = screenHeight - navbarHeight;
+    
     // シャボン玉のサイズを大きくする
     const newSize = Math.min(Math.random() * 150 + 200, screenWidth * 0.4); // 基本サイズを200-350pxに、最大サイズを画面幅の40%に
 
@@ -81,25 +84,28 @@ export default function Home() {
       <div 
         className="absolute inset-0 bg-blue-100 opacity-70"
         style={{
-          backgroundImage: 'url(images/background.jpg)',
+          backgroundImage: 'url(/images/background.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
         }}
       />
-      <CustomNavbar onSelect={handleBubbleClick} />
-
-      {bubbles.map((bubble) => (
-        <Bubble
-          key={bubble.id}
-          id={bubble.id}
-          x={bubble.x}
-          y={bubble.y}
-          size={bubble.size}
-          type={bubble.type}
-          onClick={handleBubbleClick}
-        />
-      ))}
+      <div className="relative z-10">
+        <CustomNavbar onSelect={handleBubbleClick} />
+      </div>
+      <div className="relative z-0 pt-16">
+        {bubbles.map((bubble) => (
+          <Bubble
+            key={bubble.id}
+            id={bubble.id}
+            x={bubble.x}
+            y={bubble.y}
+            size={bubble.size}
+            type={bubble.type}
+            onClick={handleBubbleClick}
+          />
+        ))}
+      </div>
 
       <Modal
         selectedContent={selectedContent}
@@ -116,12 +122,12 @@ export default function Home() {
           }
         }
         .animate-bubble {
-          animation: bubble 20s ease-out forwards;
+          animation: bubble 15s ease-out forwards;
           will-change: transform;
         }
         @media (max-width: 768px) {
           .animate-bubble {
-            animation: bubble 16s ease-out forwards;
+            animation: bubble 12s ease-out forwards;
           }
         }
       `}</style>
