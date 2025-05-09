@@ -39,7 +39,7 @@ export default function Home() {
     
     // 画面の左端から右端まで均等に生成するように修正
     const minX = screenWidth * 0.01; // 画面左端から10%の位置
-    const maxX = screenWidth * 0.9; // 画面右端から10%の位置
+    const maxX = screenWidth * 0.7; // 画面右端から10%の位置
     const newX = minX + Math.random() * (maxX - minX);
     
     // ナビゲーションバーの高さ（約64px）を考慮して生成位置を調整
