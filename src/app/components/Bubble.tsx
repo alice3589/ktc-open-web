@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ContentType, contentIcons } from './types';
 
 interface BubbleProps {
