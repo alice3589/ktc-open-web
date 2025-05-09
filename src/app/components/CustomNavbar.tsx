@@ -2,7 +2,6 @@
 
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { ContentType } from './types';
-import Image from 'next/image';
 
 interface CustomNavbarProps {
   onSelect: (type: ContentType) => void;
@@ -13,12 +12,11 @@ export const CustomNavbar = ({ onSelect }: CustomNavbarProps) => (
     <Container>
       <div className="flex items-center">
         <div className="relative w-8 h-8 mr-2">
-          <Image
+          <img
             src="images/logo.png"
             alt="学校ロゴ"
-            fill
             className="object-contain"
-            sizes="32px"
+            // sizes="32px"
           />
         </div>
         <Navbar.Brand href="#home">なびげーしょんばー</Navbar.Brand>
