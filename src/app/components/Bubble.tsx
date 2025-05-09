@@ -33,17 +33,17 @@ export const Bubble = ({ id, x, y, size, type, onClick }: BubbleProps) => {
         maxWidth: '400px',
         maxHeight: '400px',
         padding: '4px',
+        
         background: borderGradient,
       }}
     >
-      <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-        <div className="relative w-1/2 h-1/2">
-          <Image
+      <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+        <div className={`relative ${type === 'greeting' ? 'w-10/10 h-10/10' : 'w-1/2 h-1/2'}`}>
+          <img
             src={contentIcons[type]}
             alt={type}
-            fill
             className="object-contain"
-            sizes="(max-width: 768px) 40vw, 150px"
+            // sizes="(max-width: 768px) 40vw, 150px"
           />
         </div>
       </div>
