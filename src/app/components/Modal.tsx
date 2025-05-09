@@ -14,7 +14,7 @@ export const Modal = ({ selectedContent, onClose }: ModalProps) => {
         return (
           <div className="p-3 sm:p-4">
             <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">学校長挨拶</h2>
-            <p className="text-sm sm:text-base">ここに学校長の挨拶文が入ります。</p>
+            <p className="text-sm sm:text-base">すごそうなことをかく</p>
           </div>
         );
       case "schedule":
@@ -22,9 +22,9 @@ export const Modal = ({ selectedContent, onClose }: ModalProps) => {
           <div className="p-3 sm:p-4">
             <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">スケジュール</h2>
             <ul className="list-disc pl-4 text-sm sm:text-base">
-              <li>4月1日：入学式</li>
-              <li>4月8日：始業式</li>
-              <li>4月15日：新入生歓迎会</li>
+              <li>4月1日：それっぽいよてい</li>
+              <li>4月1日：それっぽいよてい</li>
+              <li>4月1日：それっぽいよてい</li>
             </ul>
           </div>
         );
@@ -32,7 +32,7 @@ export const Modal = ({ selectedContent, onClose }: ModalProps) => {
         return (
           <div className="p-3 sm:p-4">
             <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">キャンバスマップ</h2>
-            <p className="text-sm sm:text-base">ここにキャンパスマップが表示されます。</p>
+            <p className="text-sm sm:text-base">きゃんばすまっぷをひょうじする</p>
           </div>
         );
       case "notice":
@@ -40,9 +40,9 @@ export const Modal = ({ selectedContent, onClose }: ModalProps) => {
           <div className="p-3 sm:p-4">
             <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">連絡事項</h2>
             <ul className="list-disc pl-4 text-sm sm:text-base">
-              <li>新入生オリエンテーションについて</li>
-              <li>授業開始について</li>
-              <li>学生証の受け取りについて</li>
+              <li>それっぽいよてい</li>
+              <li>それっぽいよてい</li>
+              <li>それっぽいよてい</li>
             </ul>
           </div>
         );
