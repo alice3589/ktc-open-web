@@ -1,3 +1,5 @@
+"use client";
+
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { ContentType } from './types';
 import Image from 'next/image';

@@ -1,3 +1,5 @@
+"use client";
+
 import { ContentType, contentIcons } from './types';
 
 interface BubbleProps {

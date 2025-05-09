@@ -1,3 +1,4 @@
+"use client";
 export type ContentType = "greeting" | "schedule" | "map" | "notice";
 
 export const contentIcons: Record<ContentType, string> = {

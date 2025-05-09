@@ -1,3 +1,5 @@
+"use client";
+
 type ContentType = "greeting" | "schedule" | "map" | "notice";
 
 interface ModalProps {
