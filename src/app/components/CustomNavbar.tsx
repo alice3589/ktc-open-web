@@ -14,7 +14,7 @@ export const CustomNavbar = ({ onSelect }: CustomNavbarProps) => (
       <div className="flex items-center">
         <div className="relative w-8 h-8 mr-2">
           <Image
-            src="/images/logo.png"
+            src="images/logo.png"
             alt="学校ロゴ"
             fill
             className="object-contain"
